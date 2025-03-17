@@ -38,7 +38,6 @@ import { blogCollection } from "@/app/cms/collections/blog";
 import { CustomLoginView } from "@/app/cms/components/CustomLoginView";
 import { Button, OpenInNewIcon } from "@firecms/ui";
 import Link from "next/link";
-import { homeCollection } from "./collections/home";
 
 export function App() {
 

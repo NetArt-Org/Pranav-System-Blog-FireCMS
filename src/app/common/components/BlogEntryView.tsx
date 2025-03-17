@@ -2,8 +2,7 @@
 import React from "react";
 
 import { CircularProgress, cls, Container, Markdown, Typography, } from "@firecms/ui";
-import { BlogEntryWithId, ProductWithId } from "../types";
-import ProductPreviewCard from "@/app/common/components/ProductPreviewCard";
+import { BlogEntryWithId } from "../types";
 
 /**
  * This is a sample view used to render the content of a blog entry.
@@ -51,10 +50,6 @@ export function BlogEntryView({ blogEntry }: { blogEntry: BlogEntryWithId }) {
                             if (entry.type === "images")
                                 return <Images key={`preview_images_${index}`}
                                                images={entry.value}/>;
-                            if (entry.type === "products")
-                                return <ProductGroupPreview
-                                    key={`preview_products_${index}`}
-                                    products={entry.value}/>;
                             return <div key={`preview_images_${index}`}>Unexpected value in blog entry</div>;
                         }
                     )}
@@ -95,25 +90,6 @@ function Text({ markdownText }: {
     </Container>;
 }
 
-function ProductGroupPreview({ products }: {
-    products: ProductWithId[]
-}) {
-
-    if (!products) return <CircularProgress/>;
-
-    const manyProducts = products.length > 3;
-
-    return <div className={cls("flex gap-4 items-center max-w-5xl mx-auto px-4 md:px-12", {
-        "flex-wrap": manyProducts,
-    })}>
-        {products.map((p, index) => <ProductPreviewCard
-            className={cls("w-full", {
-                "flex-grow": !manyProducts,
-            })}
-            key={`products_${index}`}
-            product={p}/>)}
-    </div>;
-}
 
 
 function Quote({ quoteText }: {
