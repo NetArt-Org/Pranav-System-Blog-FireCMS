@@ -102,5 +102,4 @@ export const homeCollection = buildCollection<BlogEntry>({
             }
         }
     },
-    singular: true // Ensures only a single entry can exist
 });
