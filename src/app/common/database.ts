@@ -11,70 +11,7 @@ import {
     where
 } from "@firebase/firestore";
 import { getDownloadURL, ref } from "@firebase/storage";
-import { BlogEntryWithId, ProductWithId } from "@/app/common/types";
-
-export const getProducts = async ({
-                                      limit = 10,
-                                      categoryFilter,
-                                      minPriceFilter,
-                                      maxPriceFilter
-                                  }: {
-    limit?: number;
-    categoryFilter?: string,
-    minPriceFilter?: number,
-    maxPriceFilter?: number,
-}): Promise<ProductWithId[]> => {
-    console.log("Getting products", {
-        limit,
-        categoryFilter
-    });
-    const colRef = collection(getFirestore(firebaseApp), "products");
-    const queryConstraints: QueryConstraint[] = [limitClause(limit)];
-    if (categoryFilter) {
-        queryConstraints.push(where("category", "==", categoryFilter));
-    }
-    if (minPriceFilter !== undefined) {
-        queryConstraints.push(where("price", ">=", minPriceFilter));
-    }
-    if (maxPriceFilter !== undefined) {
-        queryConstraints.push(where("price", "<=", maxPriceFilter));
-    }
-    console.log("Products query constraints", queryConstraints);
-    const querySnapshot = await getDocs(query(colRef, ...queryConstraints));
-    return Promise.all(querySnapshot.docs.map((doc) => convertProduct(doc.data(), doc.id)));
-};
-
-export const getProduct = async (id: string): Promise<ProductWithId | null> => {
-    console.log("Getting product", id);
-    const docRef = doc(getFirestore(firebaseApp), "products", id);
-    const docSnap = await getDoc(docRef);
-    if (!docSnap.exists()) {
-        return null;
-    }
-    return convertProduct(docSnap.data(), docSnap.id,);
-};
-
-export async function convertProduct(data: Record<string, any>, id: string): Promise<ProductWithId> {
-    const images = await Promise.all((data.images ?? []).map(async (image: any) => {
-        return await getDownloadURL(ref(storage, image));
-    }));
-    return {
-        id,
-        name: data.name,
-        images: images,
-        category: data.category,
-        available: data.available,
-        price: data.price,
-        currency: data.currency,
-        public: data.public,
-        brand: data.brand,
-        description: data.description,
-        amazon_link: data.amazon_link,
-        publisher: data.publisher,
-        tags: data.tags,
-        added_on: convertDate(data["added_on"])
-    } as ProductWithId;
-}
+import { BlogEntryWithId } from "@/app/common/types";
 
 function convertDate(data: any) {
     if (!data) return null;
@@ -131,19 +68,7 @@ export async function convertBlogEntry(data: Record<string, any>, id: string): P
                 type: "quote",
                 value: content.value
             }
-        } else if (content.type === "products") {
-            return {
-                type: "products",
-                value: await Promise.all((content.value ?? []).map((entry: any) => {
-                    try {
-                        return getProduct(entry.id);
-                    } catch (e) {
-                        console.error("Error getting product", entry.id, e);
-                        return [];
-                    }
-                }))
-            }
-        } else {
+        }else {
             throw new Error("Unexpected content type in blog entry: " + content.type);
         }
 
