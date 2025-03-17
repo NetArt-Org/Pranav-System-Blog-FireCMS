@@ -2,9 +2,10 @@ import { EntityReference } from "@firecms/core";
 
 
 export type BlogEntry = {
+    slug: string,
     name: string,
     header_image: string,
-    content: (BlogEntryImages | BlogEntryText  | BlogQuote)[];
+    content: string;
     created_on: Date,
     publish_date: Date,
     reviewed: boolean,

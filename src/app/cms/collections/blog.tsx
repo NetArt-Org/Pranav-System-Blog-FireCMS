@@ -8,10 +8,14 @@ export const blogCollection = buildCollection<BlogEntry>({
     name: "Blog",
     singularName: "Blog entry",
     icon: "article",
-    group: "Content",
     description: "A collection of blog entries",
     defaultSize: "l",
     properties: {
+        slug: {
+            name: "Slug",
+            validation: { required: true },
+            dataType: "string"
+        },
         name: {
             name: "Name",
             validation: { required: true },
@@ -37,40 +41,9 @@ export const blogCollection = buildCollection<BlogEntry>({
             name: "Content",
             description: "Content blocks for the blog entry",
             validation: { required: true },
-            dataType: "array",
-            oneOf: {
-                typeField: "type",
-                valueField: "value",
-                properties: {
-                    text: {
-                        dataType: "string",
-                        name: "Text",
-                        markdown: true
-                    },
-                    quote: {
-                        dataType: "string",
-                        name: "Quote",
-                        multiline: true
-                    },
-                    images: {
-                        name: "Images",
-                        dataType: "array",
-                        of: {
-                            dataType: "string",
-                            storage: {
-                                storagePath: "images",
-                                acceptedFiles: ["image/*"],
-                                metadata: {
-                                    cacheControl: "max-age=1000000"
-                                }
-                            }
-                        },
-                        description: "This fields allows uploading multiple images at once and reordering"
-                    },
-                },
-                propertiesOrder: ["text", "quote", "images",]
-            }
-        },
+            dataType: "string",  // Changed from 'array' to 'string'
+            markdown: true  // Enables Markdown support for rich text formatting
+        },        
         created_on: {
             name: "Created on",
             dataType: "date",
