@@ -26,17 +26,6 @@ export const blogCollection = buildCollection<BlogEntry>({
             validation: { required: true },
             dataType: "string"
         },
-        // header_image: {
-        //     name: "Header image",
-        //     dataType: "string",
-        //     storage: {
-        //         storagePath: "images",
-        //         acceptedFiles: ["image/*"],
-        //         metadata: {
-        //             cacheControl: "max-age=1000000"
-        //         }
-        //     }
-        // },
         content: {
             name: "Content",
             description: "Content blocks for the blog entry",

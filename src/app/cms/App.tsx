@@ -35,6 +35,7 @@ import { useImportPlugin } from "@firecms/data_import";
 import { useExportPlugin } from "@firecms/data_export";
 import logo from "@/app/common/logo.svg";
 import { blogCollection } from "@/app/cms/collections/blog";
+import { homeCollection } from "./collections/home";
 import { CustomLoginView } from "@/app/cms/components/CustomLoginView";
 import { Button, OpenInNewIcon } from "@firecms/ui";
 import Link from "next/link";
@@ -59,7 +60,7 @@ export function App() {
     const collectionsBuilder = useCallback(() => {
         return [
             blogCollection,
-            // homeCollection
+            homeCollection
         ];
     }, []);
 

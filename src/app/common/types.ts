@@ -1,6 +1,55 @@
 import { EntityReference } from "@firecms/core";
 
-
+export type HomeEntry = {
+    banner:{
+        heading:string,
+        content: string;
+        btnTxt: string;
+        btnLink: string;
+    },
+    keyStats: {
+        content: string;
+        imageUrl: string;
+    }[];
+    explore: {
+        heading: string;
+        content: string;
+        carousel: {
+            heading: string;
+            content: string;
+            imageUrl: string;
+        }[];
+    };
+    trading: {
+        heading: string;
+        content: string;
+        carousel: {
+            heading: string;
+            content: string;
+            imageUrl: string;
+            btnTxt: string;
+            link: string;
+        }[];
+    };
+    trade: {
+        heading: string;
+        content: string;
+        list: {
+            btnTxt: string;
+        }[];
+        imageUrl: string;
+        Googlelink: string;
+        AppStoreLink: string;
+    };
+    features: {
+        heading: string;
+        content: string;
+        features: {
+            heading: string;
+            content: string;
+        }[];
+    };
+}
 export type BlogEntry = {
     slug: string,
     name: string,

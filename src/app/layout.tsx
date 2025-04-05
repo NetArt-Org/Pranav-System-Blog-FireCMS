@@ -6,8 +6,8 @@ import "@fontsource/playfair-display";
 import "@fontsource/jetbrains-mono";
 
 export const metadata: Metadata = {
-    title: "Pranav System Blog",
-    description: "Pranav System Blog",
+    title: "Leo Prime CMS",
+    description: "Leo Prime CMS",
 };
 
 
