@@ -6,6 +6,10 @@ export type HomeEntry = {
         content: string;
         btnTxt: string;
         btnLink: string;
+        imageUrl:string;
+        coinUrl:string;
+        stockUrl:string;
+        graphUrl:string;
     },
     keyStats: {
         content: string;
@@ -49,6 +53,49 @@ export type HomeEntry = {
             content: string;
         }[];
     };
+}
+export type AccountEntry = {
+    banner:{
+        heading:string,
+        content: string,
+        btnTxt: string,
+        btnLink: string,
+        imageUrl:string,
+    },
+    info: {
+        heading: string,
+        content: string,
+    },
+    account: {
+        heading: string,
+        content: string,
+        accountName: string,
+        tableData: {
+            [key: string]: {
+                heading: string,
+                content: string,
+            },
+        },
+        note: string,
+    },
+    steps: {
+        heading: string,
+        content: string,
+        steps: {
+            heading: string,
+            content: string,
+            imageUrl: string,
+            btnTxt: string,
+            link: string,
+        }[],
+    },
+    beginTrading:{
+        heading:string,
+        content: string,
+        btnTxt: string,
+        btnLink: string,
+        imageUrl:string,
+    },
 }
 export type BlogEntry = {
     slug: string,

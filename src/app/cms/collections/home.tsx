@@ -33,7 +33,27 @@ export const homeCollection = buildCollection<HomeEntry>({
                     name: "Button Link",
                     dataType: "string",
                     url: true
-                }
+                },
+                imageUrl: {
+                    name: "Image URL",
+                    dataType: "string",
+                    url: true
+                },
+                coinUrl: {
+                    name: "Coin URL",
+                    dataType: "string",
+                    url: true
+                },
+                stockUrl: {
+                    name: "Stock URL",
+                    dataType: "string",
+                    url: true
+                },
+                graphUrl: {
+                    name: "Graph URL",
+                    dataType: "string",
+                    url: true
+                },
             },
             expanded: true
         },
